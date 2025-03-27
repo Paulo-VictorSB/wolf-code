@@ -377,4 +377,6 @@ class TaskRequest extends FormRequest
 
 ```
 
-### Agora vou explicar o que cada método faz.
+Minha ideia era receber os dados da requisição e o seu método, validar os dados, manipular o banco de dados e exibir uma resposta em formato de json.
+
+Rotas->Model->Controller->Request->Resource(padronizar a resposta);
