@@ -159,7 +159,7 @@ Agora a API estará disponível em `http://127.0.0.1:8000`.
 
 Primeiramente, eu desenhei um fluxo-grama para entender o que precisava ser feito para realizar o sistema.
 
-Primeiro eu pensei em criar as entidades do banco de dados
+Primeiro eu pensei em criar as entidades do banco de dados:
 ```bash
     Schema::create('tasks', function (Blueprint $table) {
         $table->id(); 
@@ -169,4 +169,22 @@ Primeiro eu pensei em criar as entidades do banco de dados
         $table->date('due_date')->nullable(); 
         $table->timestamps();
     });
+```
+
+Depois, eu decidi popular usando um seeder:
+```bash
+    $statuses = ['pendente', 'em andamento', 'concluído'];
+
+    $faker = Faker::create();
+
+    for ($i = 1; $i <= 1000; $i++) {
+        DB::table('tasks')->insert([
+            'title' => 'Tarefa ' . $i,
+            'description' => $i % 2 == 0 ? $faker->paragraph() : null,
+            'status' => $statuses[array_rand($statuses)],
+            'due_date' => now()->addDays(rand(1, 10)),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
 ```
