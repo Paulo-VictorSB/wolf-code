@@ -4,23 +4,21 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class TaskSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $statuses = ['pendente', 'em andamento', 'concluído'];
 
-        for ($i = 1; $i <= 10; $i++) {
+        $faker = Faker::create();
+
+        for ($i = 1; $i <= 1000; $i++) {
             DB::table('tasks')->insert([
                 'title' => 'Tarefa ' . $i,
-                'description' => $i % 2 == 0 ? 'Descrição da tarefa ' . $i : null,
+                'description' => $i % 2 == 0 ? $faker->paragraph() : null,
                 'status' => $statuses[array_rand($statuses)],
                 'due_date' => now()->addDays(rand(1, 10)),
                 'created_at' => now(),
@@ -29,3 +27,4 @@ class TaskSeeder extends Seeder
         }
     }
 }
+
