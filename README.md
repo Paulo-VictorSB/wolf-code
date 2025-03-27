@@ -158,7 +158,7 @@ Agora a API estará disponível em `http://127.0.0.1:8000`.
     "updated_at": "2025-03-01T00:00:00.000000Z"
   }
 
-### Vamos para as minhas decisções.
+### Vamos para as minhas decisões.
 
 Primeiramente, eu desenhei um fluxo-grama para entender o que precisava ser feito para realizar o sistema.
 
@@ -214,4 +214,78 @@ Tive um pouco de problema nessa parte, não para implementar as rotas em si, mas
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+```
+
+Após isso, já era a hora de criar os models e os controllers:
+```bash
+    // controller
+    <?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\TaskRequest;
+use App\Http\Resources\TaskResource;
+use App\Models\Task;
+
+class TaskController extends Controller
+{
+
+    public function index()
+    {   
+        $tasks = Task::all();
+        return TaskResource::collection($tasks);
+    }
+
+    public function store(TaskRequest $request)
+    {
+        $data = $request->validated();
+        if (empty($data['status'])) {
+            $data['status'] = 'pendente';
+        }
+        $tasks = Task::create($data);
+        return new TaskResource($tasks);
+    }
+
+    public function update(TaskRequest $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->update($request->validated());
+        return new TaskResource($task->fresh());
+    }
+
+    public function destroy($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'task deleted'
+        ]);
+    }
+}
+
+    // model
+
+    <?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'title',
+        'description',
+        'status',
+        'due_date',
+    ];
+}
+
 ```
