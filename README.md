@@ -6,22 +6,6 @@
 
 Esta é uma API RESTful para um sistema de gerenciamento de tarefas. A API permite criar, editar, listar e excluir tarefas, e todas as ações são realizadas em conformidade com as regras de negócios associadas a cada status de tarefa.
 
-## Índice
-
-- [Visão Geral](#visão-geral)
-- [Requisitos](#requisitos)
-- [Instalação](#instalação)
-- [Endpoints da API](#endpoints-da-api)
-  - [GET /tasks](#get-task)
-  - [POST /tasks](#post-task)
-  - [PUT /tasks/{id}](#put-task-id)
-  - [DELETE /tasks/{id}](#delete-task-id)
-- [Regras de Negócio](#regras-de-negócio)
-- [Validações e Erros](#validações-e-erros)
-- [Exemplo de Resposta](#exemplo-de-resposta)
-- [Autenticação](#autenticação)
-- [Seed de Dados](#seed-de-dados)
-
 ## Visão Geral
 
 A API de gerenciamento de tarefas permite a criação, leitura, atualização e exclusão de tarefas. Cada tarefa possui um título, uma descrição (opcional), um status (pendente, em andamento, ou concluído), e uma data de vencimento (opcional). 
