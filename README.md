@@ -191,3 +191,27 @@ Depois, eu decidi popular usando um seeder:
         ]);
     }
 ```
+Então eu pensei, agora eu preciso criar as rotas da minha API:
+```bash
+    Route::middleware('api')->group(function () {
+    Route::get('/tasks', [TaskController::class, 'index'])->name('get_task');
+    Route::post('/tasks', [TaskController::class, 'store'])->name('new_task');
+    Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('update_task');
+    Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('delete_task');
+});
+```
+Tive um pouco de problema nessa parte, não para implementar as rotas em si, mas sim, o conflito que estava dando com o arquivo web.php, resolvi indo na pasta bootstrap/app.php e definindo o seguinte:
+```bash
+    return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        api: __DIR__.'/../routes/api.php',
+        health: '/up',
+        apiPrefix: ''
+    )
+    ->withMiddleware(function (Middleware $middleware) {
+        //
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
+    })->create();
+```
