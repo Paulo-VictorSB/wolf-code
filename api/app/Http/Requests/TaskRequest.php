@@ -21,7 +21,7 @@ class TaskRequest extends FormRequest
         $rules = [
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'status' => 'string|in:pendente,em andamento,concluído',
+            'status' => 'nullable|string|in:pendente,em andamento,concluído',
             'due_date' => 'nullable|date'
         ];
 
@@ -70,5 +70,5 @@ class TaskRequest extends FormRequest
     protected function getActionMessage()
     {
         $action = $this->isMethod('delete') ? 'delete' : 'update';
-        return "It is not possible to {$action} tasks that are not peding.";    }
+        return "It is not possible to {$action} tasks that are not pending.";    }
 }

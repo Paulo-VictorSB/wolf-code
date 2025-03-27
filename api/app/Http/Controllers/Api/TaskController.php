@@ -11,14 +11,18 @@ class TaskController extends Controller
 {
 
     public function index()
-    {
+    {   
         $tasks = Task::all();
         return TaskResource::collection($tasks);
     }
 
     public function store(TaskRequest $request)
     {
-        $tasks = Task::create($request->validated());
+        $data = $request->validated();
+        if (empty($data['status'])) {
+            $data['status'] = 'pendente';
+        }
+        $tasks = Task::create($data);
         return new TaskResource($tasks);
     }
 
