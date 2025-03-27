@@ -1,5 +1,9 @@
 # API de Gerenciamento de Tarefas (Task Manager)
 
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+
 Esta é uma API RESTful para um sistema de gerenciamento de tarefas. A API permite criar, editar, listar e excluir tarefas, e todas as ações são realizadas em conformidade com as regras de negócios associadas a cada status de tarefa.
 
 ## Índice
@@ -100,7 +104,6 @@ Agora a API estará disponível em `http://127.0.0.1:8000`.
         "created_at": "2025-03-01T00:00:00.000000Z",
         "updated_at": "2025-03-01T00:00:00.000000Z"
       },
-      ...
     ]
     ```
 
