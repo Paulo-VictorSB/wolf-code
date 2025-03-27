@@ -1,6 +1,3 @@
-# Gerando o conteúdo do arquivo README.md para documentação da API
-
-readme_content = """
 # API de Gerenciamento de Tarefas (Task Manager)
 
 Esta é uma API RESTful para um sistema de gerenciamento de tarefas. A API permite criar, editar, listar e excluir tarefas, e todas as ações são realizadas em conformidade com as regras de negócios associadas a cada status de tarefa.
@@ -33,21 +30,23 @@ A API de gerenciamento de tarefas permite a criação, leitura, atualização e 
 ## Requisitos
 
 Antes de rodar a aplicação, certifique-se de ter os seguintes requisitos:
-- PHP >= 8.0
+- PHP >= 8.2
 - Composer
-- Laravel >= 9.x
+- Laravel >= 12
 - Banco de Dados MySQL ou MariaDB
 
 ## Instalação
 
+Nota: Antes de realizar as migrations, crie um banco de dados chamado wolfcode e no seu arquivo .env coloque o nome do banco criado.
+
 1. **Clone o repositório**:
     ```bash
-    git clone https://seu-repositorio.git
+    git clone https://github.com/Paulo-VictorSB/wolf-code.git
     ```
 
 2. **Instale as dependências**:
     ```bash
-    cd nome-do-projeto
+    cd wolf-code
     composer install
     ```
 
@@ -77,7 +76,7 @@ Antes de rodar a aplicação, certifique-se de ter os seguintes requisitos:
     php artisan serve
     ```
 
-Agora a API estará disponível em `http://localhost:8000`.
+Agora a API estará disponível em `http://127.0.0.1:8000`.
 
 ## Endpoints da API
 
@@ -118,4 +117,40 @@ Agora a API estará disponível em `http://localhost:8000`.
     "description": "Descrição da tarefa",
     "status": "pendente", 
     "due_date": "2025-04-01T00:00:00.000000Z"
+  }
+
+### PUT /tasks/{id}
+
+**Descrição**: Editar uma tarefa existente.
+
+- **URL**: `/tasks/{id}`
+- **Método HTTP**: `PUT`
+- **Corpo da Requisição**:
+  ```json
+  {
+    "id": 1,
+    "title": "Título da Tarefa",
+    "description": "Descrição da tarefa",
+    "status": "pendente",
+    "due_date": "2025-04-01T00:00:00.000000Z",
+    "created_at": "2025-03-01T00:00:00.000000Z",
+    "updated_at": "2025-03-01T00:00:00.000000Z"
+  }
+
+### DELETE /tasks/{id}
+
+**Descrição**: Deletar uma tarefa existente.
+
+- **URL**: `/tasks/{id}`
+- **Método HTTP**: `DELETE`
+- **Corpo da Requisição**:
+  ```json
+  {
+    "id": 1,
+    "title": "Título da Tarefa",
+    "description": "Descrição da tarefa",
+    "status": "pendente",
+    "due_date": "2025-04-01T00:00:00.000000Z",
+    "created_at": "2025-03-01T00:00:00.000000Z",
+    "updated_at": "2025-03-01T00:00:00.000000Z"
   }
