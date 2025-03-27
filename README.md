@@ -154,3 +154,19 @@ Agora a API estará disponível em `http://127.0.0.1:8000`.
     "created_at": "2025-03-01T00:00:00.000000Z",
     "updated_at": "2025-03-01T00:00:00.000000Z"
   }
+
+### Vamos para as minhas decisções.
+
+Primeiramente, eu desenhei um fluxo-grama para entender o que precisava ser feito para realizar o sistema.
+
+Primeiro eu pensei em criar as entidades do banco de dados
+```bash
+    Schema::create('tasks', function (Blueprint $table) {
+        $table->id(); 
+        $table->string('title'); 
+        $table->text('description')->nullable(); 
+        $table->enum('status', ['pendente', 'em andamento', 'concluído'])->default('pendente'); 
+        $table->date('due_date')->nullable(); 
+        $table->timestamps();
+    });
+```
