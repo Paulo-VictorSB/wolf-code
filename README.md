@@ -134,12 +134,6 @@ Agora a API estará disponível em `http://127.0.0.1:8000`.
   ```json
   {
     "id": 1,
-    "title": "Título da Tarefa",
-    "description": "Descrição da tarefa",
-    "status": "pendente",
-    "due_date": "2025-04-01T00:00:00.000000Z",
-    "created_at": "2025-03-01T00:00:00.000000Z",
-    "updated_at": "2025-03-01T00:00:00.000000Z"
   }
 
 ### Vamos para as minhas decisões.
